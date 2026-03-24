@@ -78,6 +78,25 @@ const testimonials = [
   },
 ];
 
+const workPhotos = [
+  {
+    src: "/assets/generated/work-construction.dim_800x500.jpg",
+    label: "Industrial Staffing",
+  },
+  {
+    src: "/assets/generated/work-recruitment.dim_800x500.jpg",
+    label: "Recruitment & Placement",
+  },
+  {
+    src: "/assets/generated/work-industrial.dim_800x500.jpg",
+    label: "Industrial Operations",
+  },
+  {
+    src: "/assets/generated/work-security.dim_800x500.jpg",
+    label: "Security Services",
+  },
+];
+
 export default function HomePage() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
@@ -254,6 +273,16 @@ export default function HomePage() {
           </div>
         )}
       </header>
+
+      {/* ─── RMS Company Banner ─── */}
+      <div className="w-full overflow-hidden relative">
+        <img
+          src="/assets/generated/rms-banner.dim_1200x400.jpg"
+          alt="Rajput's Manpower Services"
+          className="w-full object-cover max-h-[180px] md:max-h-[300px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+      </div>
 
       <main>
         {/* ─── Hero ─── */}
@@ -488,6 +517,55 @@ export default function HomePage() {
                   </div>
                 ))}
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Our Work ─── */}
+        <section className="py-20 bg-white border-t border-border">
+          <div className="max-w-6xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="text-orange-500 text-xs font-semibold uppercase tracking-widest">
+                Gallery
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-2">
+                Our Work
+              </h2>
+              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+                See Our Expertise In Action
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {workPhotos.map((photo, i) => (
+                <motion.div
+                  key={photo.label}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  data-ocid={`ourwork.item.${i + 1}`}
+                  className="relative rounded-xl overflow-hidden aspect-[4/3] group cursor-pointer"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.label}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <span className="text-white font-bold text-sm leading-tight drop-shadow">
+                      {photo.label}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
